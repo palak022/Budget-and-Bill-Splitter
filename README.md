@@ -1,36 +1,36 @@
-# Budget and Bill Splitter
+# 🧾 SplitSmart – Budget & Bill Splitter
 
-A **Java console-based application** that helps users manage group expenses, split bills fairly, and track balances.  
-The program allows adding expenses, viewing all transactions, checking individual balances, and monitoring the remaining budget.  
-
----
-
-## Features
-- **Add Expenses** with description, amount, payer, and participants  
-- **Automatic Bill Splitting** among shared members (equal division)  
-- **Expense History**: View all expenses added so far  
-- **Balances**: Check how much each person owes or is owed  
-- **Remaining Budget**: Track how much of the budget is left  
-- Simple **menu-driven console interface**  
+**SplitSmart** is a **web-based budget and bill splitting application** built with **Java, HTML, CSS, and JavaScript**.  
+It helps users **manage shared expenses**, track individual balances, and monitor remaining budget in a user-friendly interface.
 
 ---
 
-## Tech Stack
-- **Language:** Java  
-- **Concepts Used:** OOP, Loops, Arrays, Conditional Statements, Methods  
+## 🔹 Features
+
+- **Setup Budget & Participants:** Define total budget and participant names.  
+- **Add Expenses:** Enter description, amount, payer, and shared members.  
+- **Balances Table:** Displays each participant’s net balance.  
+- **Remaining Budget:** Shows remaining budget after all expenses.  
+- **Responsive, Full-screen Layout** with table-style forms.  
+- **Color-coded Buttons:** Green for adding expenses with hover effect.  
 
 ---
 
-## How It Works
-1. User enters the **total budget** and **number of people**.  
-2. Names of all participants are added.  
-3. From the menu, the user can:  
-   - Add a new expense (with payer and shared members)  
-   - View all expenses  
-   - Show balances of each participant  
-   - Display remaining budget  
-4. Program runs until the user selects **Exit**.  
+## 🔹 Technologies Used
+
+- **Java** – Handles backend logic for expenses, payer, and shared amounts.  
+- **HTML5** – Webpage structure.  
+- **CSS3** – Styling for table layout, responsive forms, and buttons.  
+- **JavaScript** – Handles dynamic expense calculations and updates UI in real-time.  
+
+---
+
+## 🔹 Live Website
+
+Check the project online here: [SplitSmart Live Demo](https://your-website-link.com)
 
 ---
 
 
+```bash
+git clone https://github.com/your-username/SplitSmart.git
