@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitSmart – Budget & Bill Splitter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>BudgetBuddy – Budget & Bill Splitter</h1>
+
+    <div class="form-section">
+        <h2>Setup Budget & Participants</h2>
+        <label for="totalBudget">Total Budget (₹):</label>
+        <input type="number" id="totalBudget" placeholder="Enter total budget">
+
+        <label for="peopleNames">Enter Names (comma separated):</label>
+        <input type="text" id="peopleNames" placeholder="e.g., Alice,Bob,Charlie">
+
+        <button class="book-btn" onclick="setup()">Set Budget & Participants</button>
+    </div>
+
+    <div class="form-section">
+        <h2>Add Expense</h2>
+        <label for="description">Description:</label>
+        <input type="text" id="description" placeholder="Dinner, Movie, etc.">
+
+        <label for="amount">Amount (₹):</label>
+        <input type="number" id="amount" placeholder="Enter amount">
+
+        <label for="whoPaid">Who Paid:</label>
+        <input type="text" id="whoPaid" placeholder="Enter name">
+
+        <label for="sharedWith">Shared With (comma separated names):</label>
+        <input type="text" id="sharedWith" placeholder="e.g., Alice,Bob">
+
+        <button class="book-btn" onclick="addExpense()">Add Expense</button>
+    </div>
+
+    <div class="form-section">
+        <h2>Balances</h2>
+        <table id="balanceTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Balance (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic rows -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-section">
+        <h2>Remaining Budget</h2>
+        <p id="remainingBudget">₹0</p>
+    </div>
+
+    <script>
+        let totalBudget = 0;
+        let people = [];
+        let balances = [];
+
+        function setup() {
+            totalBudget = parseInt(document.getElementById('totalBudget').value);
+            let names = document.getElementById('peopleNames').value;
+            people = names.split(',').map(n => n.trim());
+            balances = new Array(people.length).fill(0);
+            updateBalances();
+            updateRemainingBudget();
+            alert('Budget & Participants set successfully!');
+        }
+
+        function addExpense() {
+            let description = document.getElementById('description').value;
+            let amount = parseInt(document.getElementById('amount').value);
+            let whoPaid = document.getElementById('whoPaid').value.trim();
+            let sharedWith = document.getElementById('sharedWith').value.split(',').map(n => n.trim());
+
+            if (!description || !amount || !whoPaid || sharedWith.length === 0) {
+                alert('Please fill all fields.');
+                return;
+            }
+
+            let payerIndex = people.findIndex(p => p.toLowerCase() === whoPaid.toLowerCase());
+            if (payerIndex === -1) {
+                alert('Payer not found!');
+                return;
+            }
+
+            let share = Math.floor(amount / sharedWith.length);
+            balances[payerIndex] += amount;
+            sharedWith.forEach(name => {
+                let idx = people.findIndex(p => p.toLowerCase() === name.toLowerCase());
+                if (idx !== -1) balances[idx] -= share;
+            });
+
+            totalBudget -= amount;
+            alert('Expense added successfully!');
+            updateBalances();
+            updateRemainingBudget();
+        }
+
+        function updateBalances() {
+            let tbody = document.querySelector('#balanceTable tbody');
+            tbody.innerHTML = '';
+            people.forEach((name, i) => {
+                let row = `<tr><td>${name}</td><td>₹${balances[i]}</td></tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function updateRemainingBudget() {
+            document.getElementById('remainingBudget').innerText = `₹${totalBudget}`;
+        }
+    </script>
+</body>
+</html>
