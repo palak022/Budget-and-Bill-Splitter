@@ -1,4 +1,4 @@
-# 🧾 SplitSmart – Budget & Bill Splitter
+# 🧾 BudgetBuddy – Budget & Bill Splitter
 
 **SplitSmart** is a **web-based budget and bill splitting application** built with **Java, HTML, CSS, and JavaScript**.  
 It helps users **manage shared expenses**, track individual balances, and monitor remaining budget in a user-friendly interface.
